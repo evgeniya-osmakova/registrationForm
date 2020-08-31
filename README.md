@@ -1,24 +1,3 @@
-# customer
+# An example of customer registration form with validation.
 
-## Project setup
-```
-npm install
-```
-
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
-
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+<a href="https://github.com/evgeniya-osmakova/registrationForm/actions"><img src="https://github.com/evgeniya-osmakova/registrationForm/workflows/Node%20CI/badge.svg" /></a>
