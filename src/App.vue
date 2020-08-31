@@ -1,28 +1,80 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div class="container">
+    <form @submit.prevent="showMessage" data-form="user-data">
+      <Bio :errs=errsMsgs v-on:changeBioValidity="onChangeBioValidity" />
+      <Address :errs=errsMsgs v-on:changeAddressValidity="onChangeAddressValidity" />
+      <Pass :errs=errsMsgs v-on:changePassValidity="onChangePassValidity" />
+      <button :errs=errsMsgs type="submit" :disabled="invalidAllForm" class="btn btn-primary">Отправить</button>
+    </form>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+  import Bio from './components/Bio.vue';
+  import Address from './components/Address.vue';
+  import Pass from './components/Pass.vue';
 
-export default {
-  name: 'App',
-  components: {
-    HelloWorld
+  export default {
+    components: {Pass, Address, Bio},
+
+    data() {
+      return {
+        errsMsgs: {
+          empty: 'Поле обязательно для заполнения',
+          onlyNumbers: 'Поле должно содержать только цифры',
+          onlyAlpha: 'Поле должно содержать только русские буквы',
+          phone: 'Номер телефона должен начинаться с цифры 7',
+        },
+        invalidBio: true,
+        invalidAddress: true,
+        invalidPass: true,
+        invalidAllForm: true,
+      }
+    },
+
+    methods: {
+      showMessage() {
+        alert('Клиент создан');
+      },
+      onChangeBioValidity(value) {
+        console.log('klkl')
+        this.invalidBio = value;
+        this.invalidAllForm = this.invalidBio || this.invalidAddress || this.invalidPass;
+      },
+      onChangeAddressValidity(value) {
+        console.log('32333')
+        console.log(value)
+        this.invalidAddress = value;
+        this.invalidAllForm = this.invalidBio || this.invalidAddress || this.invalidPass;
+      },
+      onChangePassValidity(value){
+        console.log('12212')
+        this.invalidPass = value;
+        this.invalidAllForm = this.invalidBio || this.invalidAddress || this.invalidPass;
+      },
+    },
   }
-}
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+  .container {
+    border-radius: 5px;
+    background-color: whitesmoke;
+    padding: 20px;
+  }
+
+  .form-group label {
+    padding: .5em 1em .5em 0;
+    flex: 1;
+  }
+
+  .form-group input {
+    flex: 2;
+  }
+
+  footer {
+    position: absolute;
+    width: 100%;
+    text-align: center;
+  }
 </style>
