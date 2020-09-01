@@ -91,4 +91,7 @@ export default {
         padding: .5em;
         margin-bottom: 24px;
     }
+    .error {
+        color: red;
+    }
 </style>
