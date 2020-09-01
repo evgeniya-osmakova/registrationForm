@@ -83,7 +83,8 @@
             </div>
             <div class="form-group">
                 <label for="user-data-clientgroup">Группа клиентов<sup>*</sup></label>
-                <select id="user-data-clientgroup" name="clientgroup" size="3" multiple v-model="clientgroup" >
+                <select id="user-data-clientgroup"
+                        name="clientgroup" size="3" multiple v-model="clientgroup" >
                     <option value="vip">VIP</option>
                     <option value="problem">Проблемные</option>
                     <option value="oms">ОМС</option>
@@ -108,54 +109,54 @@
 </template>
 
 <script>
-  import { required, minLength, maxLength } from 'vuelidate/lib/validators';
+import { required, minLength, maxLength } from 'vuelidate/lib/validators';
 
-  export default {
-    name: 'Bio',
-    props: ['errs'],
+export default {
+  name: 'Bio',
+  props: ['errs'],
 
-    data() {
-      return {
-        surname: '',
-        name: '',
-        patronymic: '',
-        birth: null,
-        phone: null,
-        sex: '',
-        clientgroup: '',
-      };
+  data() {
+    return {
+      surname: '',
+      name: '',
+      patronymic: '',
+      birth: null,
+      phone: null,
+      sex: '',
+      clientgroup: '',
+    };
+  },
+
+  validations: {
+    surname: {
+      required,
+      alpha: (val) => /^[а-яё]*$/i.test(val),
     },
-
-    validations: {
-        surname: {
-          required,
-          alpha: val => /^[а-яё]*$/i.test(val),
-        },
-        name: {
-          required,
-          alpha: val => /^[а-яё]*$/i.test(val),
-        },
-        patronymic: {
-          alpha: val => /^[а-яё]*$/i.test(val),
-        },
-        birth: {
-          required,
-        },
-        phone: {
-          required,
-          minLength: minLength(11),
-          maxLength: maxLength(11),
-          validFormat: val => /^7/.test(val),
-          numeric: val => /^[0-9]*$/i.test(val),
-        },
-        sex: {
-          alpha: val => /^[а-яё]*$/i.test(val),
-        },
-        clientgroup: {
-          required,
-        }
+    name: {
+      required,
+      alpha: (val) => /^[а-яё]*$/i.test(val),
     },
-  }
+    patronymic: {
+      alpha: (val) => /^[а-яё]*$/i.test(val),
+    },
+    birth: {
+      required,
+    },
+    phone: {
+      required,
+      minLength: minLength(11),
+      maxLength: maxLength(11),
+      validFormat: (val) => /^7/.test(val),
+      numeric: (val) => /^[0-9]*$/i.test(val),
+    },
+    sex: {
+      alpha: (val) => /^[а-яё]*$/i.test(val),
+    },
+    clientgroup: {
+      required,
+    },
+  },
+};
 
 </script>
 

@@ -4,56 +4,54 @@
       <Bio :errs=errsMsgs v-on:changeBioValidity="onChangeBioValidity" />
       <Address :errs=errsMsgs v-on:changeAddressValidity="onChangeAddressValidity" />
       <Pass :errs=errsMsgs v-on:changePassValidity="onChangePassValidity" />
-      <button :errs=errsMsgs type="submit" :disabled="invalidAllForm" class="btn btn-primary">Отправить</button>
+      <button :errs=errsMsgs type="submit"
+              :disabled="invalidAllForm" class="btn btn-primary">Отправить</button>
     </form>
   </div>
 </template>
 
 <script>
-  import Bio from './components/Bio.vue';
-  import Address from './components/Address.vue';
-  import Pass from './components/Pass.vue';
+import Bio from './components/Bio.vue';
+import Address from './components/Address.vue';
+import Pass from './components/Pass.vue';
 
-  export default {
-    components: {Pass, Address, Bio},
+export default {
+  components: { Pass, Address, Bio },
 
-    data() {
-      return {
-        errsMsgs: {
-          empty: 'Поле обязательно для заполнения',
-          onlyNumbers: 'Поле должно содержать только цифры',
-          onlyAlpha: 'Поле должно содержать только русские буквы',
-          phone: 'Номер телефона должен начинаться с цифры 7',
-        },
-        invalidBio: true,
-        invalidAddress: true,
-        invalidPass: true,
-        invalidAllForm: true,
-      }
+  data() {
+    return {
+      errsMsgs: {
+        empty: 'Поле обязательно для заполнения',
+        onlyNumbers: 'Поле должно содержать только цифры',
+        onlyAlpha: 'Поле должно содержать только русские буквы',
+        phone: 'Номер телефона должен начинаться с цифры 7',
+      },
+      invalidBio: true,
+      invalidAddress: true,
+      invalidPass: true,
+      invalidAllForm: true,
+    };
+  },
+
+  methods: {
+    showMessage() {
+      // eslint-disable-next-line no-alert
+      alert('Клиент создан');
     },
-
-    methods: {
-      showMessage() {
-        alert('Клиент создан');
-      },
-      onChangeBioValidity(value) {
-        console.log('klkl')
-        this.invalidBio = value;
-        this.invalidAllForm = this.invalidBio || this.invalidAddress || this.invalidPass;
-      },
-      onChangeAddressValidity(value) {
-        console.log('32333')
-        console.log(value)
-        this.invalidAddress = value;
-        this.invalidAllForm = this.invalidBio || this.invalidAddress || this.invalidPass;
-      },
-      onChangePassValidity(value){
-        console.log('12212')
-        this.invalidPass = value;
-        this.invalidAllForm = this.invalidBio || this.invalidAddress || this.invalidPass;
-      },
+    onChangeBioValidity(value) {
+      this.invalidBio = value;
+      this.invalidAllForm = this.invalidBio || this.invalidAddress || this.invalidPass;
     },
-  }
+    onChangeAddressValidity(value) {
+      this.invalidAddress = value;
+      this.invalidAllForm = this.invalidBio || this.invalidAddress || this.invalidPass;
+    },
+    onChangePassValidity(value) {
+      this.invalidPass = value;
+      this.invalidAllForm = this.invalidBio || this.invalidAddress || this.invalidPass;
+    },
+  },
+};
 </script>
 
 <style>

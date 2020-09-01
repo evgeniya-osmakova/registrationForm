@@ -58,7 +58,7 @@
 </template>
 
 <script>
-import {required} from 'vuelidate/lib/validators';
+import { required } from 'vuelidate/lib/validators';
 
 export default {
   name: 'Address',
@@ -75,20 +75,20 @@ export default {
   },
   validations: {
     index: {
-      numeric: val => /^[0-9]*$/i.test(val),
+      numeric: (val) => /^[0-9]*$/i.test(val),
     },
     country: {
-      alpha: val => /^[а-яё]*$/i.test(val),
+      alpha: (val) => /^[а-яё]*$/i.test(val),
     },
     region: {
-      alpha: val => /^[а-яё]*$/i.test(val),
+      alpha: (val) => /^[а-яё]*$/i.test(val),
     },
     town: {
       required,
-      alpha: val => /^[а-яё]*$/i.test(val),
-    }
-  }
-}
+      alpha: (val) => /^[а-яё]*$/i.test(val),
+    },
+  },
+};
 </script>
 
 <style scoped>

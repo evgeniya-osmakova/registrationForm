@@ -50,35 +50,35 @@
 </template>
 
 <script>
-  import {required} from 'vuelidate/lib/validators';
+import { required } from 'vuelidate/lib/validators';
 
-  export default {
-    name: 'Pass',
-    props: ['errs'],
+export default {
+  name: 'Pass',
+  props: ['errs'],
 
-    data() {
-      return {
-        docType: '',
-        series: '',
-        number: '',
-        date: '',
-      };
+  data() {
+    return {
+      docType: '',
+      series: '',
+      number: '',
+      date: '',
+    };
+  },
+  validations: {
+    docType: {
+      required,
     },
-    validations: {
-      docType: {
-        required,
-      },
-      series: {
-        numeric: val => /^[0-9]*$/i.test(val),
-      },
-      number: {
-        numeric: val => /^[0-9]*$/i.test(val),
-      },
-      date: {
-        required,
-      },
-    }
-  }
+    series: {
+      numeric: (val) => /^[0-9]*$/i.test(val),
+    },
+    number: {
+      numeric: (val) => /^[0-9]*$/i.test(val),
+    },
+    date: {
+      required,
+    },
+  },
+};
 </script>
 
 <style scoped>
